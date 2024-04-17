@@ -10,7 +10,8 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 
 ## v1.1.0
 
-- add skip error and report 
+- add skip error and report
+- go mod update
 
 ## v1.0.0
 
