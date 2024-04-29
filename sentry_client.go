@@ -21,20 +21,7 @@ type Client interface {
 	io.Closer
 }
 
-func NewClient(
-	ctx context.Context,
-	dsn DSN,
-) (Client, error) {
-	return NewClientWithOptions(ctx, sentry.ClientOptions{
-		Dsn: dsn.String(),
-		// Set TracesSampleRate to 1.0 to capture 100%
-		// of transactions for performance monitoring.
-		// We recommend adjusting this value in production,
-		TracesSampleRate: 1.0,
-	})
-}
-
-func NewClientWithOptions(ctx context.Context, clientOptions sentry.ClientOptions) (Client, error) {
+func NewClient(ctx context.Context, clientOptions sentry.ClientOptions) (Client, error) {
 	newClient, err := sentry.NewClient(clientOptions)
 	if err != nil {
 		return nil, errors.Wrapf(ctx, err, "create sentry client failed")

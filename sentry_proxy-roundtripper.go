@@ -15,7 +15,7 @@ import (
 // NewProxyRoundTripper allow overwrite sentry host without modifing the alert content.
 func NewProxyRoundTripper(
 	roundtripper http.RoundTripper,
-	url Proxy,
+	url string,
 ) http.RoundTripper {
 	return &roundTripper{
 		roundtripper: roundtripper,
@@ -25,12 +25,12 @@ func NewProxyRoundTripper(
 
 type roundTripper struct {
 	roundtripper http.RoundTripper
-	url          Proxy
+	url          string
 }
 
 func (r *roundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
 	glog.V(4).Infof("orginal request to %s", req.URL.String())
-	u, err := url.Parse(r.url.String())
+	u, err := url.Parse(r.url)
 	if err != nil {
 		return nil, errors.Wrapf(req.Context(), err, "parse url %s failed", r.url)
 	}
