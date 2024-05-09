@@ -3,6 +3,7 @@ package mocks
 
 import (
 	"sync"
+	"time"
 
 	"github.com/bborbe/sentry"
 	sentrya "github.com/getsentry/sentry-go"
@@ -44,6 +45,17 @@ type SentryClient struct {
 	}
 	closeReturnsOnCall map[int]struct {
 		result1 error
+	}
+	FlushStub        func(time.Duration) bool
+	flushMutex       sync.RWMutex
+	flushArgsForCall []struct {
+		arg1 time.Duration
+	}
+	flushReturns struct {
+		result1 bool
+	}
+	flushReturnsOnCall map[int]struct {
+		result1 bool
 	}
 	invocations      map[string][][]interface{}
 	invocationsMutex sync.RWMutex
@@ -228,6 +240,67 @@ func (fake *SentryClient) CloseReturnsOnCall(i int, result1 error) {
 	}{result1}
 }
 
+func (fake *SentryClient) Flush(arg1 time.Duration) bool {
+	fake.flushMutex.Lock()
+	ret, specificReturn := fake.flushReturnsOnCall[len(fake.flushArgsForCall)]
+	fake.flushArgsForCall = append(fake.flushArgsForCall, struct {
+		arg1 time.Duration
+	}{arg1})
+	stub := fake.FlushStub
+	fakeReturns := fake.flushReturns
+	fake.recordInvocation("Flush", []interface{}{arg1})
+	fake.flushMutex.Unlock()
+	if stub != nil {
+		return stub(arg1)
+	}
+	if specificReturn {
+		return ret.result1
+	}
+	return fakeReturns.result1
+}
+
+func (fake *SentryClient) FlushCallCount() int {
+	fake.flushMutex.RLock()
+	defer fake.flushMutex.RUnlock()
+	return len(fake.flushArgsForCall)
+}
+
+func (fake *SentryClient) FlushCalls(stub func(time.Duration) bool) {
+	fake.flushMutex.Lock()
+	defer fake.flushMutex.Unlock()
+	fake.FlushStub = stub
+}
+
+func (fake *SentryClient) FlushArgsForCall(i int) time.Duration {
+	fake.flushMutex.RLock()
+	defer fake.flushMutex.RUnlock()
+	argsForCall := fake.flushArgsForCall[i]
+	return argsForCall.arg1
+}
+
+func (fake *SentryClient) FlushReturns(result1 bool) {
+	fake.flushMutex.Lock()
+	defer fake.flushMutex.Unlock()
+	fake.FlushStub = nil
+	fake.flushReturns = struct {
+		result1 bool
+	}{result1}
+}
+
+func (fake *SentryClient) FlushReturnsOnCall(i int, result1 bool) {
+	fake.flushMutex.Lock()
+	defer fake.flushMutex.Unlock()
+	fake.FlushStub = nil
+	if fake.flushReturnsOnCall == nil {
+		fake.flushReturnsOnCall = make(map[int]struct {
+			result1 bool
+		})
+	}
+	fake.flushReturnsOnCall[i] = struct {
+		result1 bool
+	}{result1}
+}
+
 func (fake *SentryClient) Invocations() map[string][][]interface{} {
 	fake.invocationsMutex.RLock()
 	defer fake.invocationsMutex.RUnlock()
@@ -237,6 +310,8 @@ func (fake *SentryClient) Invocations() map[string][][]interface{} {
 	defer fake.captureMessageMutex.RUnlock()
 	fake.closeMutex.RLock()
 	defer fake.closeMutex.RUnlock()
+	fake.flushMutex.RLock()
+	defer fake.flushMutex.RUnlock()
 	copiedInvocations := map[string][][]interface{}{}
 	for key, value := range fake.invocations {
 		copiedInvocations[key] = value
