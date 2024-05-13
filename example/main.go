@@ -54,6 +54,10 @@ func main() {
 	client.CaptureException(err, &sentry.EventHint{
 		OriginalException: err,
 		Context:           ctx,
+		Data: map[string]interface{}{
+			"data1": "str",
+			"data2": 1337,
+		},
 	}, sentry.NewScope())
 
 	glog.V(2).Infof("done")
