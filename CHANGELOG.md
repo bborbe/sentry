@@ -8,6 +8,15 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.8.1
+
+- add LICENSE file  
+- add GitHub workflows for CI and Claude Code integration
+- update Go version from 1.24.1 to 1.24.5
+- update dependencies (sentry-go, glog, counterfeiter, ginkgo, gomega)
+- add golines tool for code formatting
+- improve .gitignore patterns
+
 ## v1.8.0
 
 - remove vendor

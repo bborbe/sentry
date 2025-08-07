@@ -17,13 +17,25 @@ import (
 
 //counterfeiter:generate -o mocks/sentry-client.go --fake-name SentryClient . Client
 type Client interface {
-	CaptureMessage(message string, hint *sentry.EventHint, scope sentry.EventModifier) *sentry.EventID
-	CaptureException(exception error, hint *sentry.EventHint, scope sentry.EventModifier) *sentry.EventID
+	CaptureMessage(
+		message string,
+		hint *sentry.EventHint,
+		scope sentry.EventModifier,
+	) *sentry.EventID
+	CaptureException(
+		exception error,
+		hint *sentry.EventHint,
+		scope sentry.EventModifier,
+	) *sentry.EventID
 	Flush(timeout stdtime.Duration) bool
 	io.Closer
 }
 
-func NewClient(ctx context.Context, clientOptions sentry.ClientOptions, excludeErrors ...ExcludeError) (Client, error) {
+func NewClient(
+	ctx context.Context,
+	clientOptions sentry.ClientOptions,
+	excludeErrors ...ExcludeError,
+) (Client, error) {
 	newClient, err := sentry.NewClient(clientOptions)
 	if err != nil {
 		return nil, errors.Wrapf(ctx, err, "create sentry client failed")
@@ -69,13 +81,21 @@ func (c *client) Flush(timeout stdtime.Duration) bool {
 	return c.client.Flush(timeout)
 }
 
-func (c *client) CaptureMessage(message string, hint *sentry.EventHint, scope sentry.EventModifier) *sentry.EventID {
+func (c *client) CaptureMessage(
+	message string,
+	hint *sentry.EventHint,
+	scope sentry.EventModifier,
+) *sentry.EventID {
 	eventID := c.client.CaptureMessage(message, hint, scope)
 	glog.V(2).Infof("capture sentry message with id %s: %s", *eventID, message)
 	return eventID
 }
 
-func (c *client) CaptureException(err error, hint *sentry.EventHint, scope sentry.EventModifier) *sentry.EventID {
+func (c *client) CaptureException(
+	err error,
+	hint *sentry.EventHint,
+	scope sentry.EventModifier,
+) *sentry.EventID {
 	if c.excludeErrors.IsExcluded(err) {
 		glog.V(4).Infof("capture error %v is excluded => skip", err)
 		return nil

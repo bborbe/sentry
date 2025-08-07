@@ -304,14 +304,6 @@ func (fake *SentryClient) FlushReturnsOnCall(i int, result1 bool) {
 func (fake *SentryClient) Invocations() map[string][][]interface{} {
 	fake.invocationsMutex.RLock()
 	defer fake.invocationsMutex.RUnlock()
-	fake.captureExceptionMutex.RLock()
-	defer fake.captureExceptionMutex.RUnlock()
-	fake.captureMessageMutex.RLock()
-	defer fake.captureMessageMutex.RUnlock()
-	fake.closeMutex.RLock()
-	defer fake.closeMutex.RUnlock()
-	fake.flushMutex.RLock()
-	defer fake.flushMutex.RUnlock()
 	copiedInvocations := map[string][][]interface{}{}
 	for key, value := range fake.invocations {
 		copiedInvocations[key] = value
