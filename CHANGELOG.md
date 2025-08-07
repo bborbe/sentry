@@ -8,6 +8,11 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.8.2
+
+- enhance README.md with comprehensive documentation including status badges, features overview, installation instructions, and usage examples
+- add detailed package-level GoDoc comment with usage examples and feature descriptions
+
 ## v1.8.1
 
 - add LICENSE file  

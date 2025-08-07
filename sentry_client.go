@@ -2,6 +2,28 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+// Package sentry provides an enhanced wrapper around the Sentry Go SDK with additional
+// functionality for error exclusion, automatic tag enrichment, and context data extraction.
+//
+// The main Client interface wraps the official Sentry Go SDK and adds:
+//   - Automatic tag extraction from context and errors
+//   - Configurable error filtering to reduce noise
+//   - Enhanced integration with github.com/bborbe/errors for context data
+//   - Proxy support for HTTP transport
+//
+// Example usage:
+//
+//	client, err := sentry.NewClient(ctx, sentry.ClientOptions{
+//	    Dsn: "your-dsn-here",
+//	    Tags: map[string]string{"service": "my-app"},
+//	})
+//	if err != nil {
+//	    return err
+//	}
+//	defer client.Close()
+//
+//	// Capture exception with automatic tag enrichment
+//	client.CaptureException(err, &sentry.EventHint{Context: ctx}, nil)
 package sentry
 
 import (
