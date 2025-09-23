@@ -8,6 +8,14 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.8.3
+
+- add EventModifier interface for custom event processing
+- add EventModifierFunc type for function-based event modifiers
+- add EventModifierList type for sequential modifier application
+- add comprehensive test coverage for event modifier functionality
+- add detailed godoc documentation for all event modifier types
+
 ## v1.8.2
 
 - enhance README.md with comprehensive documentation including status badges, features overview, installation instructions, and usage examples
