@@ -111,44 +111,6 @@ The client automatically extracts and adds tags from:
 
 For detailed API documentation, visit [pkg.go.dev/github.com/bborbe/sentry](https://pkg.go.dev/github.com/bborbe/sentry).
 
-## Development
-
-### Prerequisites
-
-- Go 1.24.5 or later
-- Make
-
-### Building and Testing
-
-```bash
-# Install dependencies
-make ensure
-
-# Run tests
-make test
-
-# Run all checks (formatting, linting, tests)
-make precommit
-
-# Generate mocks
-make generate
-```
-
-### Running the Example
-
-```bash
-cd example
-go run main.go -dsn="your-sentry-dsn-here"
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run `make precommit` to ensure code quality
-5. Submit a pull request
-
 ## License
 
 This project is licensed under the BSD License - see the [LICENSE](LICENSE) file for details.
