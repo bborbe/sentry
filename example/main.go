@@ -51,14 +51,18 @@ func main() {
 		stderrors.New("banana"),
 		map[string]string{"error-data": "error-value"},
 	)
-	client.CaptureException(err, &sentry.EventHint{
-		OriginalException: err,
-		Context:           ctx,
-		Data: map[string]interface{}{
-			"data1": "str",
-			"data2": 1337,
+	client.CaptureException(
+		err,
+		&sentry.EventHint{
+			OriginalException: err,
+			Context:           ctx,
+			Data: map[string]interface{}{
+				"data1": "str",
+				"data2": 1337,
+			},
 		},
-	}, sentry.NewScope())
+		sentry.NewScope(),
+	)
 
 	glog.V(2).Infof("done")
 }
