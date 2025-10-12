@@ -8,6 +8,16 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.8.4
+
+- add golangci-lint configuration file
+- enhance Makefile with additional linting and security scanning targets (lint, gosec, trivy, osv-scanner)
+- update Go version to 1.25.2
+- update dependencies (errors, run, ginkgo)
+- add new development tools (golangci-lint, gosec, osv-scanner)
+- improve GitHub Actions CI workflow with updated Go version
+- streamline README by removing development sections
+
 ## v1.8.3
 
 - add EventModifier interface for custom event processing

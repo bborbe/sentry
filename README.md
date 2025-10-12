@@ -110,14 +110,3 @@ The client automatically extracts and adds tags from:
 ## API Documentation
 
 For detailed API documentation, visit [pkg.go.dev/github.com/bborbe/sentry](https://pkg.go.dev/github.com/bborbe/sentry).
-
-## License
-
-This project is licensed under the BSD License - see the [LICENSE](LICENSE) file for details.
-
-## Dependencies
-
-- [github.com/getsentry/sentry-go](https://github.com/getsentry/sentry-go) - Official Sentry Go SDK
-- [github.com/bborbe/errors](https://github.com/bborbe/errors) - Enhanced error handling with context data
-- [github.com/onsi/ginkgo/v2](https://github.com/onsi/ginkgo) - BDD testing framework
-- [github.com/onsi/gomega](https://github.com/onsi/gomega) - Matcher library for testing
