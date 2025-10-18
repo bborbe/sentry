@@ -1,4 +1,4 @@
-// Copyright (c) 2023 Benjamin Borbe All rights reserved.
+// Copyright (c) 2023-2025 Benjamin Borbe All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
@@ -38,6 +38,10 @@ import (
 )
 
 //counterfeiter:generate -o mocks/sentry-client.go --fake-name SentryClient . Client
+
+// Client provides an enhanced interface for interacting with Sentry error tracking.
+// It wraps the official Sentry Go SDK and adds automatic tag enrichment from context
+// and errors, configurable error filtering, and enhanced integration with github.com/bborbe/errors.
 type Client interface {
 	CaptureMessage(
 		message string,
@@ -53,6 +57,13 @@ type Client interface {
 	io.Closer
 }
 
+// NewClient creates a new Sentry client with enhanced functionality including automatic
+// tag enrichment and error filtering. It accepts standard Sentry ClientOptions and optional
+// ExcludeError functions to filter out specific errors from being sent to Sentry.
+//
+// WARNING: Do not pass sensitive information (passwords, API keys, PII, tokens) in hint.Data,
+// context data, or error data as these will be sent to Sentry as tags and may be stored or
+// logged externally.
 func NewClient(
 	ctx context.Context,
 	clientOptions sentry.ClientOptions,
@@ -60,9 +71,13 @@ func NewClient(
 ) (Client, error) {
 	newClient, err := sentry.NewClient(clientOptions)
 	if err != nil {
-		return nil, errors.Wrapf(ctx, err, "create sentry client failed")
+		return nil, errors.Wrap(ctx, err, "create sentry client failed")
 	}
 	newClient.AddEventProcessor(func(event *sentry.Event, hint *sentry.EventHint) *sentry.Event {
+		// Initialize Tags map if nil (defensive programming)
+		if event.Tags == nil {
+			event.Tags = make(map[string]string)
+		}
 		if hint.Context != nil {
 			for k, v := range errors.DataFromContext(hint.Context) {
 				event.Tags[k] = v
@@ -109,7 +124,11 @@ func (c *client) CaptureMessage(
 	scope sentry.EventModifier,
 ) *sentry.EventID {
 	eventID := c.client.CaptureMessage(message, hint, scope)
-	glog.V(2).Infof("capture sentry message with id %s: %s", *eventID, message)
+	if eventID != nil {
+		glog.V(2).Infof("capture sentry message with id %s", *eventID)
+	} else {
+		glog.V(2).Infof("capture sentry message failed: eventID is nil")
+	}
 	return eventID
 }
 
@@ -132,7 +151,11 @@ func (c *client) CaptureException(
 		hint.OriginalException = err
 	}
 	eventID := c.client.CaptureException(err, hint, scope)
-	glog.V(2).Infof("capture sentry execption with id %s: %v", *eventID, err)
+	if eventID != nil {
+		glog.V(2).Infof("capture sentry exception with id %s", *eventID)
+	} else {
+		glog.V(2).Infof("capture sentry exception failed: eventID is nil")
+	}
 	return eventID
 }
 

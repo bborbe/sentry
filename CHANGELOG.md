@@ -8,6 +8,20 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.8.5
+
+- update Go version from 1.25.2 to 1.25.3
+- update dependencies (Sentry SDK v0.35.3 → v0.36.0, bborbe/run v1.7.8 → v1.8.1, gosec v2.22.9 → v2.22.10)
+- remove deprecated golang.org/x/lint dependency
+- add comprehensive GoDoc documentation for Client interface and NewClient function
+- add sensitive data warning to NewClient documentation
+- enhance README with Development, Dependencies, and License sections
+- improve error handling with nil checks for eventID in logging
+- fix typos in logging messages (orginal → original, execption → exception)
+- add defensive nil check for event.Tags initialization
+- update copyright headers to include 2025
+- update various indirect dependencies (crypto, net, sys, text, etc.)
+
 ## v1.8.4
 
 - add golangci-lint configuration file

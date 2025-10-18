@@ -110,3 +110,32 @@ The client automatically extracts and adds tags from:
 ## API Documentation
 
 For detailed API documentation, visit [pkg.go.dev/github.com/bborbe/sentry](https://pkg.go.dev/github.com/bborbe/sentry).
+
+## Dependencies
+
+This library integrates closely with:
+- **github.com/bborbe/errors**: Enhanced context and error data extraction
+- **github.com/getsentry/sentry-go**: Official Sentry Go SDK (v0.36.0+)
+
+The integration with `bborbe/errors` enables automatic extraction of context data and error metadata as Sentry tags.
+
+## Development
+
+### Running Tests
+```bash
+make test
+```
+
+### Code Generation (Mocks)
+```bash
+make generate
+```
+
+### Full Pre-commit Workflow
+```bash
+make precommit  # Format, generate, test, and lint
+```
+
+## License
+
+This project is licensed under the BSD-style license. See the LICENSE file for details.
