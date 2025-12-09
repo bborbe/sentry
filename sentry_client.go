@@ -80,12 +80,12 @@ func NewClient(
 		}
 		if hint.Context != nil {
 			for k, v := range errors.DataFromContext(hint.Context) {
-				event.Tags[k] = v
+				event.Tags[k] = fmt.Sprintf("%v", v)
 			}
 		}
 		if hint.OriginalException != nil {
 			for k, v := range errors.DataFromError(hint.OriginalException) {
-				event.Tags[k] = v
+				event.Tags[k] = fmt.Sprintf("%v", v)
 			}
 		}
 		switch data := hint.Data.(type) {

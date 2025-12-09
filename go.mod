@@ -3,8 +3,8 @@ module github.com/bborbe/sentry
 go 1.25.5
 
 require (
-	github.com/bborbe/errors v1.4.0
-	github.com/bborbe/run v1.8.3
+	github.com/bborbe/errors v1.5.0
+	github.com/bborbe/run v1.9.0
 	github.com/getsentry/sentry-go v0.40.0
 	github.com/golang/glog v1.2.5
 	github.com/golangci/golangci-lint v1.64.8
@@ -13,8 +13,8 @@ require (
 	github.com/incu6us/goimports-reviser/v3 v3.11.0
 	github.com/kisielk/errcheck v1.9.0
 	github.com/maxbrunsfeld/counterfeiter/v6 v6.12.1
-	github.com/onsi/ginkgo/v2 v2.27.2
-	github.com/onsi/gomega v1.38.2
+	github.com/onsi/ginkgo/v2 v2.27.3
+	github.com/onsi/gomega v1.38.3
 	github.com/securego/gosec/v2 v2.22.10
 	github.com/segmentio/golines v0.13.0
 	golang.org/x/vuln v1.1.4

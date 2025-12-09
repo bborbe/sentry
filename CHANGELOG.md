@@ -8,6 +8,12 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.9.1
+
+- fix error tag values by converting all types to strings with fmt.Sprintf
+- update dependencies (errors v1.4.0 → v1.5.0, run v1.8.3 → v1.9.0, ginkgo v2.27.2 → v2.27.3, gomega v1.38.2 → v1.38.3)
+- update example to use map[string]any for error data
+
 ## v1.9.0
 
 - update go and deps

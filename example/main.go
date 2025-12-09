@@ -49,7 +49,7 @@ func main() {
 	ctx = errors.AddToContext(ctx, "context-data", "context-value")
 	err = errors.AddDataToError(
 		stderrors.New("banana"),
-		map[string]string{"error-data": "error-value"},
+		map[string]any{"error-data": "error-value"},
 	)
 	client.CaptureException(
 		err,
