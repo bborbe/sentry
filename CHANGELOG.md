@@ -8,6 +8,14 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.9.3
+
+- update Go to 1.25.6
+- update github.com/getsentry/sentry-go to v0.42.0
+- update github.com/google/osv-scanner/v2 to v2.3.2
+- update google.golang.org/grpc to v1.78.0
+- add .gitignore entries
+
 ## v1.9.2
 
 - Update Go to 1.25.5
