@@ -30,6 +30,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"maps"
 	stdtime "time"
 
 	"github.com/bborbe/errors"
@@ -73,40 +74,53 @@ func NewClient(
 	if err != nil {
 		return nil, errors.Wrap(ctx, err, "create sentry client failed")
 	}
-	newClient.AddEventProcessor(func(event *sentry.Event, hint *sentry.EventHint) *sentry.Event {
-		// Initialize Tags map if nil (defensive programming)
-		if event.Tags == nil {
-			event.Tags = make(map[string]string)
-		}
-		if hint.Context != nil {
-			for k, v := range errors.DataFromContext(hint.Context) {
-				event.Tags[k] = fmt.Sprintf("%v", v)
-			}
-		}
-		if hint.OriginalException != nil {
-			for k, v := range errors.DataFromError(hint.OriginalException) {
-				event.Tags[k] = fmt.Sprintf("%v", v)
-			}
-		}
-		switch data := hint.Data.(type) {
-		case map[string]interface{}:
-			for k, v := range data {
-				if v == nil {
-					continue
-				}
-				event.Tags[k] = fmt.Sprintf("%v", v)
-			}
-		case map[string]string:
-			for k, v := range data {
-				event.Tags[k] = v
-			}
-		}
-		return event
-	})
+	newClient.AddEventProcessor(enrichEventTags)
 	return &client{
 		client:        newClient,
 		excludeErrors: excludeErrors,
 	}, nil
+}
+
+func enrichEventTags(event *sentry.Event, hint *sentry.EventHint) *sentry.Event {
+	if event.Tags == nil {
+		event.Tags = make(map[string]string)
+	}
+	addContextTags(event, hint)
+	addErrorTags(event, hint)
+	addHintDataTags(event, hint)
+	return event
+}
+
+func addContextTags(event *sentry.Event, hint *sentry.EventHint) {
+	if hint.Context == nil {
+		return
+	}
+	for k, v := range errors.DataFromContext(hint.Context) {
+		event.Tags[k] = fmt.Sprintf("%v", v)
+	}
+}
+
+func addErrorTags(event *sentry.Event, hint *sentry.EventHint) {
+	if hint.OriginalException == nil {
+		return
+	}
+	for k, v := range errors.DataFromError(hint.OriginalException) {
+		event.Tags[k] = fmt.Sprintf("%v", v)
+	}
+}
+
+func addHintDataTags(event *sentry.Event, hint *sentry.EventHint) {
+	switch data := hint.Data.(type) {
+	case map[string]any:
+		for k, v := range data {
+			if v == nil {
+				continue
+			}
+			event.Tags[k] = fmt.Sprintf("%v", v)
+		}
+	case map[string]string:
+		maps.Copy(event.Tags, data)
+	}
 }
 
 type client struct {

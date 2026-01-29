@@ -8,6 +8,12 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.9.4
+
+- refactor NewClient to reduce cognitive complexity by extracting helper functions
+- replace interface{} with any
+- use maps.Copy for map operations
+
 ## v1.9.3
 
 - update Go to 1.25.6
