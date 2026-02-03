@@ -166,7 +166,7 @@ func (c *client) CaptureException(
 	}
 	eventID := c.client.CaptureException(err, hint, scope)
 	if eventID != nil {
-		glog.V(2).Infof("capture sentry exception with id %s", *eventID)
+		glog.V(3).Infof("capture sentry exception with id %s", *eventID)
 	} else {
 		glog.V(2).Infof("capture sentry exception failed: eventID is nil")
 	}
