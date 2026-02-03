@@ -8,6 +8,12 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.9.5
+
+- Update ginkgo/gomega test dependencies
+- Update golang.org/x toolchain dependencies
+- Update google/pprof profiling library
+
 ## v1.9.4
 
 - refactor NewClient to reduce cognitive complexity by extracting helper functions
