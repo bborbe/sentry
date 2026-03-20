@@ -1,7 +1,12 @@
 ---
-status: approved
+status: completed
+summary: All precommit checks already passing — no code changes needed; added Unreleased entry to CHANGELOG.md.
+container: sentry-001-fix-tests-and-dod
+dark-factory-version: v0.59.5-dirty
 created: "2026-03-20T12:58:06Z"
 queued: "2026-03-20T12:58:06Z"
+started: "2026-03-20T16:09:53Z"
+completed: "2026-03-20T16:17:33Z"
 ---
 
 <summary>
