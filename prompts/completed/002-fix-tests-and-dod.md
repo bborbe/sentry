@@ -1,7 +1,12 @@
 ---
-status: approved
+status: completed
+summary: All tests pass, linting clean, and make precommit exits 0 with no issues found.
+container: sentry-002-fix-tests-and-dod
+dark-factory-version: v0.59.5-dirty
 created: "2026-03-20T14:24:31Z"
 queued: "2026-03-20T14:24:31Z"
+started: "2026-03-20T16:17:37Z"
+completed: "2026-03-20T16:21:14Z"
 ---
 
 <summary>
