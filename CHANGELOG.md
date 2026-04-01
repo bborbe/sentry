@@ -8,6 +8,13 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.9.14
+
+- Update multiple indirect dependencies (docker, containerd, moby, opentelemetry)
+- Bump go-git, prometheus, klauspost/compress, and other transitive deps
+- Remove stale exclude directives for k8s and other packages from go.mod
+- Update replace directives for charmbracelet, denis-tingaikin, and opencontainers
+
 ## v1.9.13
 
 - chore: verify project health — all tests pass, linting clean, precommit exits 0
