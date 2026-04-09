@@ -8,6 +8,14 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.9.15
+
+- Update bborbe/errors to v1.5.9, bborbe/run to v1.9.17
+- Update getsentry/sentry-go to v0.45.0
+- Update golangci-lint to v2.11.4, counterfeiter to v6.12.2
+- Update golang.org/x/sys and other indirect deps
+- Add new CVE ignores to osv-scanner and trivyignore
+
 ## v1.9.14
 
 - Update multiple indirect dependencies (docker, containerd, moby, opentelemetry)
