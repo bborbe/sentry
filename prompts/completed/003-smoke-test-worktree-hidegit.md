@@ -1,8 +1,12 @@
 ---
 status: completed
+summary: 'Smoke-tested worktree+hideGit workflow: .git is hidden (character device), git status fails as expected, and make precommit passes with exit code 0 and no issues.'
+container: sentry-003-smoke-test-worktree-hidegit
+dark-factory-version: v0.121.0
 created: "2026-04-17T06:30:41Z"
 queued: "2026-04-17T09:47:00Z"
-completed: "2026-04-17T08:00:28Z"
+started: "2026-04-17T07:58:58Z"
+completed: "2026-04-17T08:23:27Z"
 ---
 
 <summary>
