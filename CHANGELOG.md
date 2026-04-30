@@ -8,9 +8,10 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
-## Unreleased
+## v1.9.16
 
 - chore: update github.com/bborbe/errors to v1.5.10 and indirect dependencies
+- chore: migrate to tools.env + Makefile @version pattern; remove tools.go and obsolete replace block; go.mod reduced from 443 to 38 lines
 
 ## v1.9.15
 
