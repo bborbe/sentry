@@ -1,11 +1,12 @@
 ---
-status: committing
+status: completed
 summary: Migrated bborbe/sentry from tools.go to tools.env + Makefile @version pattern; go.mod reduced from 443 to 38 lines, replace block eliminated, all stale CVE suppressions removed.
 container: sentry-005-migrate-tools-go
 dark-factory-version: v0.137.0-1-g310a15c6
 created: "2026-04-30T19:35:27Z"
 queued: "2026-04-30T19:35:27Z"
 started: "2026-04-30T19:40:00Z"
+completed: "2026-04-30T19:43:22Z"
 ---
 
 # Migrate from tools.go to tools.env + Makefile @version pattern
