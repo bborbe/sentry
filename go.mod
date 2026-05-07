@@ -1,11 +1,11 @@
 module github.com/bborbe/sentry
 
-go 1.26.2
+go 1.26.3
 
 require (
-	github.com/bborbe/errors v1.5.11
+	github.com/bborbe/errors v1.5.13
 	github.com/bborbe/run v1.9.23
-	github.com/getsentry/sentry-go v0.46.1
+	github.com/getsentry/sentry-go v0.46.2
 	github.com/golang/glog v1.2.5
 	github.com/onsi/ginkgo/v2 v2.28.3
 	github.com/onsi/gomega v1.40.0
