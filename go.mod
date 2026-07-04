@@ -3,7 +3,7 @@ module github.com/bborbe/sentry
 go 1.26.4
 
 require (
-	github.com/bborbe/errors v1.5.13
+	github.com/bborbe/errors v1.5.15
 	github.com/bborbe/run v1.9.28
 	github.com/getsentry/sentry-go v0.47.0
 	github.com/golang/glog v1.2.5

@@ -8,6 +8,10 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.9.20
+
+- Bump github.com/bborbe/errors to v1.5.15
+
 ## v1.9.19
 
 - Bump sentry-go to v0.47.0
