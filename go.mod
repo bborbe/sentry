@@ -1,6 +1,6 @@
 module github.com/bborbe/sentry
 
-go 1.26.5
+go 1.26.6
 
 require (
 	github.com/bborbe/errors v1.5.16
