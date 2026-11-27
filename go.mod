@@ -3,8 +3,8 @@ module github.com/bborbe/sentry
 go 1.27.4
 
 require (
-	github.com/bborbe/errors v1.6.7
-	github.com/bborbe/run v1.11.13
+	github.com/bborbe/errors v1.7.1
+	github.com/bborbe/run v1.13.0
 	github.com/getsentry/sentry-go v0.50.0
 	github.com/golang/glog v1.2.5
 	github.com/onsi/ginkgo/v2 v2.33.1
